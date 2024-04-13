@@ -7,4 +7,17 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  Rails.application.routes.draw do
+    resources :pokemons, only: [:index, :destroy] do
+      member do
+        put :capture
+      end
+  
+      collection do
+        get :captured
+        post :import
+      end
+    end
+  end
 end
